@@ -5,10 +5,10 @@
 }
 
 body {
-  background: linear-gradient(260deg, #6a9eec, #65c0d3);
-  min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
+  height: 100vh;
   font-family: "Poppins", sans-serif;
+  background: linear-gradient(90deg, #6190e8, #a7bfe8);
 }
