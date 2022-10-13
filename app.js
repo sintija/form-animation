@@ -135,8 +135,6 @@ gsap.set (tickMarkPath, {strokeDashoffset: pathLength, strokeDasharray: pathLeng
 
 
 
-
-
 checkbox.addEventListener('click', () => {
     if(checkbox.checked) {
         tl2.to('.checkbox-fill', {top: "0%"}); 
@@ -156,5 +154,38 @@ checkbox.addEventListener('click', () => {
         tl2.to('.checkbox-label', {color: '#c5c5c5'}, "<")
     }
 
-
 });
+
+
+//Change the transform origin to the centre 
+gsap.set('#eye', {transformOrigin: 'center'})
+
+
+
+
+// Character animation.  (repeat -1) loops indefinitely  
+gsap.fromTo('#eye', {scaleY: 1}, {scaleY: 0.3, repeat: -1, yoyo: true, repeatDelay: 0.5, ease: 'Power2.easeOut'})
+
+gsap.fromTo('#eyebrow',  {y: 0}, {y: -1, repeat: -1, yoyo: true, repeatDelay: 0.5, ease: 'Power2.easeOut'})
+
+
+//Submit button 
+const button = document.querySelector('button'); 
+const tl3 = gsap.timeline({defaults: {duration: 0.75, ease: 'Power2.easeOut'}})
+
+button.addEventListener("click" , (e) => {
+    e.preventDefault(); 
+    tl3.to(".contact-right, .contact-left", {
+        y: 30, 
+        opacity: 0,
+        pointerEvents: "none"
+    }); 
+    tl3.to("from", {scale: 0.8}, "<"); 
+    tl3.fromTo('.submitted', {opacity: 0, t: 30}, {opacity: 1, y: 0})
+    //Hand Wave 
+    gsap.set('#hand', {transformOrigin: 'left'})
+    gsap.fromTo(
+        '#hand', {rotation: 0, y:0 },
+         {rotation: -10, y:2, ease: 'elastic(3,0.3)', duration: 2, delay: 1}
+         )
+})
