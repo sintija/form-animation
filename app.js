@@ -100,13 +100,7 @@ form.addEventListener('click', () => {
                 colorize('#FE8C99', line, placeholder )
             }
         }
-
-
-
       });
-
-
-
     })
 
 });
@@ -128,4 +122,39 @@ function validateEmail(email) {
     gsap.to(placeholder, {color: color, duration: 0.74});
   }
 
+  //Checkbox animation 
+  const checkbox = document.querySelector('.checkbox')
+  const tl2 = gsap.timeline({defaults: {duration: 0.5, ease: "Power2.easeOut"}})
 
+  const tickMarkPath = document.querySelector('.tick-mark path'); 
+  //getting the length of the path 
+  const pathLength = tickMarkPath.getTotalLength(); 
+
+//Setting the handwriting effects 
+gsap.set (tickMarkPath, {strokeDashoffset: pathLength, strokeDasharray: pathLength })
+
+
+
+
+
+checkbox.addEventListener('click', () => {
+    if(checkbox.checked) {
+        tl2.to('.checkbox-fill', {top: "0%"}); 
+        tl2.fromTo(
+        tickMarkPath, 
+        {strokeDashoffset: pathLength},
+        {strokeDashoffset: 0}, 
+        '<50%'
+        );
+        tl2.to('.checkbox-label', {color: '#6391e8'}, "<")
+
+        //reverting back 
+    } else {
+        tl2.to ('.checkbox-fill', {top: '100%'})
+        tl2.fromTo(tickMarkPath, {strokeDashoffset: 0}, {strokeDashoffset: pathLength}, '<50%'
+        );
+        tl2.to('.checkbox-label', {color: '#c5c5c5'}, "<")
+    }
+
+
+});
